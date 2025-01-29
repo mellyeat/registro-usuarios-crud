@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/consultas.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="consultas.html">Consultas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Altas.html">Altas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="bajas.html">Bajas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cambios.html">Cambios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Menú</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <div class="container">
+        <div class="input-container mb-3">
+            <input
+                class="input form-control"
+                name="text"
+                type="text"
+                placeholder="Buscar por nombre"
+                id="searchInput"
+                oninput="buscarUsuario()"
+            />
+        </div>
+        <div id="usersContainer">
+            <!-- User cards will be dynamically inserted here -->
+        </div>
+        <br>
+        <br>
+    </div>
+    <br>
+    <br>
+    <script src="js/consultas.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="cordova.js"></script>
+    <style>
+        .input-container {
+            position: relative;
+            width: 100%;
+            max-width: 270px;
+        }
+
+        .input {
+            width: 100%;
+            height: 60px;
+            padding: 12px;
+            font-size: 18px;
+            font-family: "Courier New", monospace;
+            color: #000;
+            background-color: #fff;
+            border: 4px solid #000;
+            border-radius: 0;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 8px 8px 0 #888;
+        }
+
+        .input::placeholder {
+            color: #888;
+        }
+
+        .input:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0 #000;
+        }
+
+        .input:focus {
+            background-color: #010101;
+            color: #fff;
+            border-color: #d6d9dd;
+        }
+
+        .input:focus::placeholder {
+            color: #fff;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px) rotate(-5deg);
+            }
+            50% {
+                transform: translateX(5px) rotate(5deg);
+            }
+            75% {
+                transform: translateX(-5px) rotate(-5deg);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .input:focus {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: none;
+                opacity: 1;
+            }
+            7% {
+                transform: skew(-0.5deg, -0.9deg);
+                opacity: 0.75;
+            }
+            10% {
+                transform: none;
+                opacity: 1;
+            }
+            27% {
+                transform: none;
+                opacity: 1;
+            }
+            30% {
+                transform: skew(0.8deg, -0.1deg);
+                opacity: 0.75;
+            }
+            35% {
+                transform: none;
+                opacity: 1;
+            }
+            52% {
+                transform: none;
+                opacity: 1;
+            }
+            55% {
+                transform: skew(-1deg, 0.2deg);
+                opacity: 0.75;
+            }
+            50% {
+                transform: none;
+                opacity: 1;
+            }
+            72% {
+                transform: none;
+                opacity: 1;
+            }
+            75% {
+                transform: skew(0.4deg, 1deg);
+                opacity: 0.75;
+            }
+            80% {
+                transform: none;
+                opacity: 1;
+            }
+            100% {
+                transform: none;
+                opacity: 1;
+            }
+        }
+
+        .input-container::after {
+            content: "|";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #000;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .input:focus + .input-container::after {
+            color: #fff;
+        }
+
+        .input:not(:placeholder-shown) {
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 0px 0px 0 #000;
+        }
+    </style>
+</body>
+</html>
